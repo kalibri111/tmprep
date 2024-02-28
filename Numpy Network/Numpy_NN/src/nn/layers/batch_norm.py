@@ -85,7 +85,7 @@ class BatchNorm:
         if self.regime == "Eval":
             raise RuntimeError("Нельзя посчитать градиенты в режиме оценки")
         
-        batch_size, _ = self.inpt_hat
+        batch_size = self.inpt_hat.shape[0]
         xmu = self.inpt_hat * np.sqrt(self.tmp_D + self.eps)
         ivar = 1. / np.sqrt(self.tmp_D + self.eps)
 
@@ -94,7 +94,7 @@ class BatchNorm:
         dgammax = grads 
         #step8
         self.gamma.grads = np.sum(dgammax * self.inpt_hat, axis=0)
-        dxhat = dgammax * self.gamma.grads
+        dxhat = dgammax * self.gamma.params
         #step7
         divar = np.sum(dxhat * xmu, axis=0)
         dxmu1 = dxhat * ivar

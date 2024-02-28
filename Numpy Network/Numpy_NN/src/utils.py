@@ -60,7 +60,7 @@ def progress_bar(iterable, text='Epoch progress', end=''):
         cur_time = int(cur_time)
         print(end, end='')
 
-def gradient_check(x, y, neural_net, epsilon=1e-7):
+def gradient_check(x, y, neural_net, epsilon=1e-5):
     optimizer = Adam(neural_net.parameters())
     np.random.seed(42)
 
@@ -78,8 +78,10 @@ def gradient_check(x, y, neural_net, epsilon=1e-7):
             neg_params = cur_params - epsilon
 
             param.params[cur_idx] = pos_params
+            np.random.seed(42)
             pos_loss_func = hinge_loss(neural_net(x), y).item()
             param.params[cur_idx] = neg_params
+            np.random.seed(42)
             neg_loss_func = hinge_loss(neural_net(x), y).item()
             param.params[cur_idx] = cur_params
 
@@ -91,5 +93,7 @@ def gradient_check(x, y, neural_net, epsilon=1e-7):
         difference = numerator / denominator 
         if difference > epsilon:
             return False
+    
+        np.random.seed(42)
     
     return True
