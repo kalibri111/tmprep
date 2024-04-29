@@ -1,6 +1,6 @@
 ---
-# prefix_filter: ["he is", "he s ", "she is", "she s "]
-prefix_filter: []
+prefix_filter: ["he is", "he s ", "she is", "she s "]
+#prefix_filter: []
 max_length: 15
 filename: "rus.txt"
 train_size: 0.8
