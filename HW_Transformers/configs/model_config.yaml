@@ -1,11 +1,19 @@
 ---
-embedding_size: 510
-dim_feedforward: 256
-hidden_size: 256
-n_heads_attention: 6
-n_encoders: 4
-n_decoders: 4
-learning_rate: 0.0001
-dropout: 0.1
-epoch_num: 30
+# transformer
+# embedding_size: 256
+# dim_feedforward: 256
+# hidden_size: 256
+# n_heads_attention: 8
+# n_encoders: 6
+# n_decoders: 6
+# learning_rate: 0.0001
+# dropout: 0.1
+# epoch_num: 15
+# try_one_batch: False
+
+# t5
+learning_rate: 0.0003
+epoch_num: 7
+pretrained_name: 'google-t5/t5-small' #"google/t5-efficient-mini" "cointegrated/rut5-base-multitask"
+# are_source_target_tokenizers_same: False # True
 try_one_batch: False

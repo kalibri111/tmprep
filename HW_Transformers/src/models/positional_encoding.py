@@ -15,7 +15,6 @@ class PositionalEncoding(torch.nn.Module):
         div_value = torch.exp(-1 * torch.arange(0, emb_size, 2).float() / emb_size * math.log(10000.0))
         pos_encoding[:, 0::2] = torch.sin(positions * div_value)
         pos_encoding[:, 1::2] = torch.cos(positions * div_value)
-        # pos_encoding = pos_encoding.unsqueeze(0)
         pos_encoding = pos_encoding.unsqueeze(1)
 
         self.register_buffer("pos_encoding", pos_encoding)
@@ -25,4 +24,3 @@ class PositionalEncoding(torch.nn.Module):
         token_embedding - тензор матрицы эмбеддингов: (S, B, E)
         """
         return token_embedding + self.pos_encoding[:token_embedding.size(0)]
-        # return token_embedding + self.pos_encoding[:, : token_embedding.size(1)]

@@ -12,6 +12,7 @@ class MTDataset(Dataset):
         return len(self.tokenized_source_list)
 
     def __getitem__(self, idx):
-        source_ids, target_ids = torch.tensor(self.tokenized_source_list[idx]).to(self.device), \
-                                 torch.tensor(self.tokenized_target_list[idx]).to(self.device)
-        return source_ids, target_ids
+        source_ids, target_ids, attention_mask = torch.tensor(self.tokenized_source_list[idx].input_ids).to(self.device), \
+                                 torch.tensor(self.tokenized_target_list[idx].input_ids).to(self.device), \
+                                 torch.tensor(self.tokenized_source_list[idx].attention_mask).to(self.device)
+        return source_ids, target_ids, attention_mask

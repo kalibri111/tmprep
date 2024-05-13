@@ -1,0 +1,8 @@
+{'learning_rate': 0.0003, 'epoch_num': 7, 'pretrained_name': 'google-t5/t5-small', 'try_one_batch': False}
+{'val_loss': 0.6820695945228713, 'train_loss': 0.6233785068514335, 'bleu_score': 0.06315801131626292}
+{'val_loss': 0.5204334259626875, 'train_loss': 0.345035555209983, 'bleu_score': 0.072745486102845}
+{'val_loss': 0.4495205109219152, 'train_loss': 0.2735455400982306, 'bleu_score': 0.08992180187603804}
+{'val_loss': 0.4059409163743851, 'train_loss': 0.23452841477904154, 'bleu_score': 0.09123322776403753}
+{'val_loss': 0.3785172420075215, 'train_loss': 0.20871806486477307, 'bleu_score': 0.125347417513502}
+{'val_loss': 0.3564818159517539, 'train_loss': 0.19002920942223486, 'bleu_score': 0.0743187177715982}
+{'val_loss': 0.33673891733842065, 'train_loss': 0.17571239190463403, 'bleu_score': 0.12775418356576704}

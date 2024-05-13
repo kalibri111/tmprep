@@ -11,17 +11,12 @@ from transformers import T5Tokenizer, PreTrainedTokenizer
 
 
 class BPETokenizer:
-    def __init__(self, sentence_list, pretrained_name=None):
+    def __init__(self, sentence_list):
         """
         sentence_list - список предложений для обучения
         """
 
-        if pretrained_name is None:
-            self.is_pretrained = True
-            self.tokenizer = self.train(sentence_list)
-        else:
-            self.is_pretrained = False
-            self.tokenizer = self.load_pretrained(sentence_list, pretrained_name)
+        self.tokenizer = self.train(sentence_list)
         
         self.set_attr()
 
@@ -30,13 +25,6 @@ class BPETokenizer:
         """
         sentence - входное предложение
         """
-        # if self.is_pretrained:
-        #     padding = self.pad_flag if pretrained_force_padding is None else pretrained_force_padding
-        #     id_list = self._tokenizer.encode(sentence,
-        #                                      padding='max_length' if padding else False,
-        #                                      truncation=padding,
-        #                                      max_length=self.max_sent_len)
-        # else:
         id_list = self.tokenizer.encode(sentence).ids
         return id_list
 
@@ -73,20 +61,6 @@ class BPETokenizer:
         self.tokenizer.enable_truncation(max_length=self.max_sent_len)
 
         return self.tokenizer
-    
-    
-    def load_pretrained(self, sentence_list, pretrained_name):
-        # self.tokenizer = T5Tokenizer.from_pretrained(pretrained_name)
-        # if self.pad_flag:
-        #     self.max_sent_len = self._get_max_length_in_tokens(sentence_list)
-        # # Special tokens
-        # self.unknown_token = self._tokenizer.unk_token
-        # self.sos_token = self._tokenizer.pad_token
-        # self.eos_token = self._tokenizer.eos_token
-        # self.pad_token = self._tokenizer.pad_token
-        # return self._tokenizer
-        pass
-
     
     def set_attr(self):
         self.word2index = self.tokenizer.get_vocab()
